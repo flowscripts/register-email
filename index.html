@@ -1,0 +1,421 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FlowScripts - Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/jpg" href="https://i.ibb.co/xMnzd6n/imagecool-9.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>@font-face {
+  font-family: Nunitosemi;
+  src: url(Nunito-SemiBold.ttf);}
+  @font-face {
+  font-family: pagetext;
+  src: url(Montserrat-SemiBold.ttf);}
+
+  @font-face {
+  font-family: linksfont;
+  src: url(Poppins-Medium.ttf);}
+
+a{font-family: 'linksfont';}
+
+  h1{
+    font-family: 'Nunitosemi',Arial, Helvetica, sans-serif;
+
+  }
+
+p{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h2{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h3{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h4{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h5{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h6{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+
+</style>
+    <style>
+        body {
+            margin: 0;
+         
+        }
+
+        .navbar {
+          width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(0,154,255);
+            background: linear-gradient(131deg, rgba(0,154,255,1) 0%, rgba(43,0,255,1) 22%, rgba(43,0,255,1) 100%);;
+            padding: 10px;
+            color: white;
+            position: fixed; /* or 'absolute' if preferred */ top: 0; left: 0; z-index: 9999;
+          
+          
+          }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .link-desktop:hover {
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+          border-bottom-right-radius: 15px;
+          border-bottom-left-radius: 15px;
+            background-color: #484eff;
+        }
+
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+        }
+
+        @media screen and (max-width: 600px) {
+            .menu {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+
+            .menu a {
+                text-align: center;
+                padding: 10px;
+                border-top: 1px solid #575757;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .navbar .toggle-button {
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+
+        @media screen and (min-width: 601px) {
+            .navbar .toggle-button {
+                display: none;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close {
+            color: #1e00ff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: rgb(70, 70, 70);
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">
+          <img style="height:50px;" src="https://i.ibb.co/KXdNMBt/Untitled5.png" alt="FlowScripts"></div>
+       <a href="https://flowscripts.github.io/account"> 
+        <div class="toggle-button">Account</div>
+      </a>  <div class="menu">
+            <a class="link-desktop" href="https://flowscripts.github.io/home">Home</a>
+          
+            <a class="link-desktop" href="https://flowscripts.github.io/templates">Templates</a>
+            <a class="link-desktop" href="https://flowscripts.github.io/account">Account</a>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div style="box-shadow: 10px 4px 25px -10px rgba(0,0,0,0.88);
+        -webkit-box-shadow: 10px 4px 25px -10px rgba(0,0,0,0.88);
+        -moz-box-shadow: 10px 4px 25px -10px rgba(0,0,0,0.88);" class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h1>Menu</h1>
+            <button  style="background: rgb(0,94,255);
+background: linear-gradient(131deg, rgba(0,94,255,1)
+ 0%, rgba(43,0,255,1) 12%, rgba(43,0,255,1) 100%); 
+ 
+ border-radius: 20px; color: white;
+
+ " onclick="closeModal()"><h2>Close</h2></button>
+           <!-- Add your menu items here -->
+
+        </div>
+    </div>
+
+
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .background-image {
+            width: 100%;
+            height: 150px;
+            background-image: url('image (10).png');
+            background-size: cover;
+            background-position: center;
+
+            
+        }
+    </style>
+
+</head>
+
+    <div class="background-image">
+       
+    </div>
+
+
+
+
+    <style>
+
+        .back-menu1{
+        padding: 2px;
+        background-color: #1e00ff;
+        color: white;
+        border-radius: 20px;
+        border-color: #fefefe00;
+        
+        }
+        
+        </style>
+        <br>
+            <button style="width: 100px;" class="back-menu1" onclick="goBack()"><h3>← Back</h3></button>
+        
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+            <br>
+
+
+
+    <style>
+
+    
+        * {
+          box-sizing: border-box;
+        }
+        
+        /* Create a column layout with Flexbox */
+        .row {
+          display: flex;
+        }
+        
+        /* Left column (menu) */
+        .left {
+          flex: 35%;
+          padding: 15px 0;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+        
+        .left h2 {
+          padding-left: 8px;
+        }
+        
+        /* Right column (page content) */
+        .right {
+          flex: 65%;
+          padding: 15px;
+        }
+        
+        /* Style the search box */
+        #mySearch {
+          width: 80%;
+          border-radius: 20px;
+          font-size: 18px;
+          padding: 11px;
+          border: 1px solid #ddd;
+        }
+        
+        /* Style the navigation menu inside the left column */
+        #myMenu {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        #myMenu li a {
+          padding: 12px;
+          text-decoration: none;
+          color: black;
+          display: block
+        }
+        
+        #myMenu li a:hover {
+            border-radius: 14px;
+            background: rgb(255,255,255);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(183,188,228,1) 100%);;
+        }
+        </style>
+        </head>
+        <body>
+        
+          <style>/* styles.css */
+            body {
+                
+                background-color: #f4f4f4;
+              
+                
+                margin: 0;
+            }
+            
+            .login-container {
+                background-color: white;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                text-align: center;
+            }
+            
+            h2 {
+                margin-bottom: 20px;
+            }
+            
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            
+            input {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+            }
+            
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #2f00ff;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            
+            button:hover {
+                background-color: #3a51ff;
+            }
+            </style>
+                <div class="login-container">
+                    <h2>Sign Up</h2>
+
+                   <h5 style="color: darkred;">The 6-digit code you entered was incorrect.</h5>
+                   <h6 style="color: darkred;">If this error continues, it might be a server problem.</h6>
+                          
+                    
+                 
+                </div>
+
+
+<br><br><br><br><br>
+<body>
+ 
+<br><br>
+    <style>
+
+        .kot-567
+        {
+          background-color: #ddd;
+        }
+      </style> 
+      
+      <div class="kot-567">
+        
+      <br>
+        
+      <h3>© FlowScripts Copyright</h3>
+      
+      
+      <br><h4><a href="https://flowscripts.github.io/terms">Terms of Service</a></h4>
+      <br>
+      <br>
+      <br>
+      </div>
+      
+      
+      
+      
+      <body>
+       
+      
+      
+      
+      </body>
+      </html>
+      
+
+
+</body>
+</html>
